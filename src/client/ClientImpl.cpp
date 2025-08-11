@@ -1,4 +1,4 @@
-#include "ClientImpl.h"
+#include "src/client/ClientImpl.h"
 
 #include <QtNetwork/QNetworkRequestFactory>
 #include <QtNetwork/QNetworkAccessManager>
@@ -76,12 +76,12 @@ ReplyData ClientImpl::processReply(QRestReply& reply) const
             QJsonObject object = array.at(i).toObject();
             replyData.push_back(toStringMap(object.toVariantMap()));
         }
-        //qDebug() << "Array response:" << replyData;
+        qDebug() << "Array response:" << replyData;
     }
     else if(doc.isObject())
     {
         replyData.push_back(toStringMap(doc.object().toVariantMap()));
-        //qDebug() << "Object responce:" << replyData;
+        qDebug() << "Object responce:" << replyData;
     }
     else
     {

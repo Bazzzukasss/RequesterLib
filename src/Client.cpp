@@ -1,12 +1,12 @@
-#include "Client.h"
-#include "IClientImpl.h"
+#include "src/Client.h"
+#include "src/interface/IClientImpl.h"
 
 namespace rqs
 {
 
-Client::Client(IClientImpl* impl)
+Client::Client(std::unique_ptr<IClientImpl> impl)
     : IClient()
-    , m_impl(impl)
+    , m_impl(std::move(impl))
 {}
 
 bool Client::connect(const std::string& serverUrl)

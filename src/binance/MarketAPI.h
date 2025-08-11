@@ -1,9 +1,12 @@
 #ifndef MARKETAPI_H
 #define MARKETAPI_H
 
-#include "IMarketAPI.h"
+#include "src/interface/IMarketAPI.h"
 
 namespace rqs
+{
+
+namespace binance
 {
 
 class MarketAPI : public IMarketAPI
@@ -14,6 +17,7 @@ public:
     EndPoint epPrice() const override;
 };
 
+} // namespace binance
 } // namespace rqs
 
 #endif // MARKETAPI_H

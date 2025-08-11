@@ -1,7 +1,7 @@
 #ifndef CLIENTIMPL_H
 #define CLIENTIMPL_H
 
-#include "IClientImpl.h"
+#include "src/interface/IClientImpl.h"
 
 #include <QtNetwork/QRestReply>
 

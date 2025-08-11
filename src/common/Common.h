@@ -10,6 +10,7 @@ namespace rqs
 
 enum class CurrencyType
 {
+    UNKNOWN,
     USDT,
     BTC,
     ETH,
@@ -24,7 +25,7 @@ enum class RequestType
     Patch
 };
 
-using CryptoPair = std::pair<CurrencyType, CurrencyType>;
+using CurrencyPair = std::pair<CurrencyType, CurrencyType>;
 using ReplyData = std::vector<std::map<std::string, std::string>>;
 using RequestData = std::string;
 using EndPoint = std::string;

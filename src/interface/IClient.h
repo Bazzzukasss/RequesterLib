@@ -1,7 +1,7 @@
 #ifndef ICLIENT_H
 #define ICLIENT_H
 
-#include "Common.h"
+#include "src/common/Common.h"
 
 namespace rqs
 {

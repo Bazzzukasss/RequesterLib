@@ -5,32 +5,32 @@ CONFIG += staticlib c++17
 DESTDIR = ../bin
 
 SOURCES += \
-    src/binance/Client.cpp \
-    src/binance/ClientImpl.cpp \
-    src/binance/MarketAPI.cpp \
-    src/binance/RequestFactory.cpp \
-    src/binance/Requester.cpp \
-    src/common/Utils.cpp
+    src/Builder.cpp \
+    src/Requester.cpp \
+    src/Client.cpp \
+    src/common/Utils.cpp \
+    src/client/ClientImpl.cpp \
+    src/binance/RequestCreator.cpp \
+    src/binance/RequestProcessor.cpp \
+    src/binance/MarketAPI.cpp
 
 HEADERS += \
+    src/Builder.h \
+    src/Client.h \
+    src/Requester.h \
     src/common/Common.h \
     src/common/Utils.h \
-    src/interfaces/IClient.h \
-    src/interfaces/IClientImpl.h \
-    src/interfaces/IMarketAPI.h \
-    src/interfaces/IRequestFactory.h \
-    src/interfaces/IRequester.h \
-    src/binance/Client.h \
-    src/binance/ClientImpl.h \
-    src/binance/MarketAPI.h \
-    src/binance/RequestFactory.h \
-    src/binance/Requester.h
-
-INCLUDEPATH += \
-    src \
-    src/common \
-    src/interfaces \
-    src/binance
+    src/client/ClientImpl.h \
+    src/interface/IBuilder.h \
+    src/interface/IClient.h \
+    src/interface/IClientImpl.h \
+    src/interface/IMarketAPI.h \
+    src/interface/IRequestCreator.h \
+    src/interface/IRequestProcessor.h \
+    src/interface/IRequester.h \
+    src/binance/RequestCreator.h \
+    src/binance/RequestProcessor.h \
+    src/binance/MarketAPI.h
 
 # Default rules for deployment.
 unix {

@@ -1,6 +1,9 @@
-#include "MarketAPI.h"
+#include "src/binance/MarketAPI.h"
 
 namespace rqs
+{
+
+namespace binance
 {
 
 MarketAPI::MarketAPI()
@@ -12,4 +15,5 @@ EndPoint MarketAPI::epPrice() const
     return "/api/v3/ticker/price";
 }
 
-}
+} // namespace binance
+} // namespace rqs

@@ -1,7 +1,8 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include "IClient.h"
+#include "src/interface/IClient.h"
+#include <memory>
 
 namespace rqs
 {
@@ -11,13 +12,13 @@ class IClientImpl;
 class Client : public IClient
 {
 public:
-    Client(IClientImpl* impl);
+    Client(std::unique_ptr<IClientImpl> impl);
 
     bool connect(const std::string& serverUrl) override;
     bool request(const Request& request) override;
 
 private:
-    IClientImpl* m_impl{nullptr};
+    std::unique_ptr<IClientImpl> m_impl{nullptr};
 };
 
 } //namespace rqs
