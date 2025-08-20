@@ -20,7 +20,7 @@ public:
               std::unique_ptr<IRequestCreator> reqCreator,
               std::unique_ptr<IRequestProcessor> reqProcessor);
 
-    bool setServerUrl(const std::string& serverUrl) override;
+    bool setMarketAccount(const MarketAccount& account) override;
     bool requestPrices(const std::vector<CurrencyPair>& currencyPairs,
                        const std::function<void (const std::map<CurrencyPair, double>&)> handler) override;
 
@@ -28,6 +28,7 @@ private:
     std::unique_ptr<IClient> m_client{nullptr};
     std::unique_ptr<IRequestCreator> m_requestCreator{nullptr};
     std::unique_ptr<IRequestProcessor> m_requestProcessor{nullptr};
+    MarketAccount m_account;
 };
 
 } // namespace rqs

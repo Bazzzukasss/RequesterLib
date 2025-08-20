@@ -2,6 +2,7 @@
 #include "src/interface/IRequestCreator.h"
 #include "src/interface/IRequestProcessor.h"
 #include "src/interface/IClient.h"
+#include "src/common/Common.h"
 
 #include <QDebug>
 
@@ -16,9 +17,10 @@ Requester::Requester(std::unique_ptr<IClient> client,
     , m_requestProcessor(std::move(reqProcessor))
 {}
 
-bool Requester::setServerUrl(const std::string& serverUrl)
+bool Requester::setMarketAccount(const MarketAccount& account)
 {
-    return m_client->connect(serverUrl);
+    m_account = account;
+    return m_client->connect(account.serverUrl);
 }
 
 bool Requester::requestPrices(const std::vector<CurrencyPair>& currencyPairs,

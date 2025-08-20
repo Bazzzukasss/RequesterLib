@@ -14,7 +14,8 @@ enum class CurrencyType
     USDT,
     BTC,
     ETH,
-    SOL
+    SOL,
+    LINK
 };
 
 enum class RequestType
@@ -43,7 +44,15 @@ struct CurrencyTrinity
 {
     CurrencyPair c1_cb;
     CurrencyPair c2_cb;
-    CurrencyPair c1_c2;
+    CurrencyPair c2_c1;
+};
+
+struct MarketAccount
+{
+    std::string serverUrl;
+    std::string user;
+    std::string password;
+    double commision_prs;
 };
 
 } // namespace rqs

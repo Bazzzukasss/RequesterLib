@@ -10,6 +10,7 @@ const std::map<CurrencyType, std::string> CurrencyMap {
     {CurrencyType::BTC, "BTC"},
     {CurrencyType::ETH, "ETH"},
     {CurrencyType::SOL, "SOL"},
+    {CurrencyType::LINK, "LINK"},
 };
 
 std::string toString(const CurrencyType& currency)
