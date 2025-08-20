@@ -12,6 +12,7 @@ public:
     virtual ~IMarketAPI() = default;
 
     virtual EndPoint epPrice() const = 0;
+    virtual std::string testServerUrl() const = 0;
 };
 
 } // namespace rqs

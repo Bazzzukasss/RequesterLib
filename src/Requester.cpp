@@ -9,10 +9,10 @@ namespace rqs
 {
 
 Requester::Requester(std::unique_ptr<IClient> client,
-                     std::unique_ptr<IRequestCreator> factory,
+                     std::unique_ptr<IRequestCreator> reqCreator,
                      std::unique_ptr<IRequestProcessor> reqProcessor)
     : m_client(std::move(client))
-    , m_requestCreator(std::move(factory))
+    , m_requestCreator(std::move(reqCreator))
     , m_requestProcessor(std::move(reqProcessor))
 {}
 

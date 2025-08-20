@@ -8,6 +8,7 @@
 namespace rqs
 {
 
+class IMarketAPI;
 class IClient;
 class IRequestCreator;
 class IRequestProcessor;
@@ -15,12 +16,11 @@ class IRequestProcessor;
 class Requester : public IRequester
 {
 public:
-    Requester(const std::unique_ptr<IClient> client,
-              std::unique_ptr<IRequestCreator> factory,
+    Requester(std::unique_ptr<IClient> client,
+              std::unique_ptr<IRequestCreator> reqCreator,
               std::unique_ptr<IRequestProcessor> reqProcessor);
 
     bool connect(const std::string& serverUrl) override;
-
     bool requestPrices(const std::vector<CurrencyPair>& currencyPairs,
                        const std::function<void (const std::map<CurrencyPair, double>&)> handler) override;
 

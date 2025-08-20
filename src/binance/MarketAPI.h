@@ -15,6 +15,7 @@ public:
     MarketAPI();
 
     EndPoint epPrice() const override;
+    std::string testServerUrl() const override;
 };
 
 } // namespace binance

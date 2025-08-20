@@ -30,7 +30,7 @@ bool ClientImpl::connect(const std::string& serverUrl)
 bool ClientImpl::request(const RequestType& type, const EndPoint& endpoint,
                          const RequestData& data, const RequestHandler& handler)
 {
-    qDebug()<<"Request:" << endpoint << data;
+    //qDebug()<<"Request:" << endpoint << data;
     QNetworkRequestFactory factory(QString::fromStdString(m_serverUrl + endpoint));
     QNetworkRequest request = factory.createRequest(QString::fromStdString(data));
 
@@ -76,12 +76,12 @@ ReplyData ClientImpl::processReply(QRestReply& reply) const
             QJsonObject object = array.at(i).toObject();
             replyData.push_back(toStringMap(object.toVariantMap()));
         }
-        qDebug() << "Array response:" << replyData;
+        //qDebug() << "Array response:" << replyData;
     }
     else if(doc.isObject())
     {
         replyData.push_back(toStringMap(doc.object().toVariantMap()));
-        qDebug() << "Object responce:" << replyData;
+        //qDebug() << "Object responce:" << replyData;
     }
     else
     {

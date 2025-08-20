@@ -39,6 +39,13 @@ struct Request
     rqs::RequestHandler handler;
 };
 
+struct CurrencyTrinity
+{
+    CurrencyPair c1_cb;
+    CurrencyPair c2_cb;
+    CurrencyPair c1_c2;
+};
+
 } // namespace rqs
 
 #endif // COMMON_H
