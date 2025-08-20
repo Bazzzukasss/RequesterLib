@@ -20,7 +20,7 @@ public:
               std::unique_ptr<IRequestCreator> reqCreator,
               std::unique_ptr<IRequestProcessor> reqProcessor);
 
-    bool connect(const std::string& serverUrl) override;
+    bool setServerUrl(const std::string& serverUrl) override;
     bool requestPrices(const std::vector<CurrencyPair>& currencyPairs,
                        const std::function<void (const std::map<CurrencyPair, double>&)> handler) override;
 

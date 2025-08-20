@@ -24,7 +24,7 @@ std::unique_ptr<IRequester> Builder::binanceRequester() const
     auto requester = std::make_unique<Requester>(std::move(client),
                                                  std::move(creator),
                                                  std::move(processor));
-    requester->connect(serverUrl);
+    requester->setServerUrl(serverUrl);
 
     return std::move(requester);
 }

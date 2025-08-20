@@ -16,7 +16,7 @@ Requester::Requester(std::unique_ptr<IClient> client,
     , m_requestProcessor(std::move(reqProcessor))
 {}
 
-bool Requester::connect(const std::string& serverUrl)
+bool Requester::setServerUrl(const std::string& serverUrl)
 {
     return m_client->connect(serverUrl);
 }
