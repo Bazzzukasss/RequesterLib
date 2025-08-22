@@ -15,7 +15,8 @@ enum class CurrencyType
     BTC,
     ETH,
     SOL,
-    LINK
+    LINK,
+    BNB
 };
 
 enum class RequestType
@@ -42,6 +43,12 @@ struct Request
 
 struct CurrencyTrinity
 {
+    CurrencyTrinity(const CurrencyType& c1, const CurrencyType& c2)
+        : c1_cb(c1, CurrencyType::USDT)
+        , c2_cb(c2, CurrencyType::USDT)
+        , c2_c1(c2, c1)
+    {}
+
     CurrencyPair c1_cb;
     CurrencyPair c2_cb;
     CurrencyPair c2_c1;
