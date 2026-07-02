@@ -9,7 +9,7 @@
 namespace rqs
 {
 
-std::unique_ptr<IRequester> Builder::binanceRequester() const
+std::shared_ptr<IRequester> Builder::binanceRequester() const
 {
     std::unique_ptr<IClientImpl> clientImpl = std::make_unique<ClientImpl>();
     std::unique_ptr<IClient> client = std::make_unique<Client>(std::move(clientImpl));
@@ -22,7 +22,7 @@ std::unique_ptr<IRequester> Builder::binanceRequester() const
                                                  std::move(creator),
                                                  std::move(processor));
 
-    return std::move(requester);
+    return requester;
 }
 
 } // namespace rqs

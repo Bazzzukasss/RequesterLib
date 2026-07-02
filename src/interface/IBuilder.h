@@ -13,7 +13,7 @@ class IBuilder
 public:
     virtual ~IBuilder() = default;
 
-    virtual std::unique_ptr<IRequester> binanceRequester() const = 0;
+    virtual std::shared_ptr<IRequester> binanceRequester() const = 0;
 };
 
 } // namespace rqs

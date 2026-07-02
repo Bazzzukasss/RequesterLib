@@ -11,7 +11,7 @@ class IRequester;
 class Builder : public IBuilder
 {
 public:
-    std::unique_ptr<IRequester> binanceRequester() const override;
+    std::shared_ptr<IRequester> binanceRequester() const override;
 };
 
 } //namespace rqs
