@@ -1,7 +1,7 @@
 QT += core
 
 TEMPLATE = lib
-CONFIG += staticlib c++17
+CONFIG += staticlib c++ object_parallel_to_source
 DESTDIR = ../bin
 
 SOURCES += \
@@ -12,7 +12,10 @@ SOURCES += \
     src/client/ClientImpl.cpp \
     src/binance/RequestCreator.cpp \
     src/binance/RequestProcessor.cpp \
-    src/binance/MarketAPI.cpp
+    src/binance/MarketAPI.cpp \
+    src/bybit/RequestCreator.cpp \
+    src/bybit/RequestProcessor.cpp \
+    src/bybit/MarketAPI.cpp
 
 HEADERS += \
     src/Builder.h \
@@ -30,7 +33,10 @@ HEADERS += \
     src/interface/IRequester.h \
     src/binance/RequestCreator.h \
     src/binance/RequestProcessor.h \
-    src/binance/MarketAPI.h
+    src/binance/MarketAPI.h \
+    src/bybit/RequestCreator.h \
+    src/bybit/RequestProcessor.h \
+    src/bybit/MarketAPI.h
 
 # Default rules for deployment.
 unix {

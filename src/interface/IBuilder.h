@@ -14,6 +14,7 @@ public:
     virtual ~IBuilder() = default;
 
     virtual std::shared_ptr<IRequester> binanceRequester() const = 0;
+    virtual std::shared_ptr<IRequester> bybitRequester() const = 0;
 };
 
 } // namespace rqs

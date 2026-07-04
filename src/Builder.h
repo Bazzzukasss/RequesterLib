@@ -12,6 +12,7 @@ class Builder : public IBuilder
 {
 public:
     std::shared_ptr<IRequester> binanceRequester() const override;
+    std::shared_ptr<IRequester> bybitRequester() const override;
 };
 
 } //namespace rqs

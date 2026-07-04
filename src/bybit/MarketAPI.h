@@ -1,12 +1,12 @@
-#ifndef BINANCE_MARKETAPI_H
-#define BINANCE_MARKETAPI_H
+#ifndef BYBIT_MARKETAPI_H
+#define BYBIT_MARKETAPI_H
 
 #include "src/interface/IMarketAPI.h"
 
 namespace rqs
 {
 
-namespace binance
+namespace bybit
 {
 
 class MarketAPI : public IMarketAPI
@@ -18,7 +18,7 @@ public:
     std::string testServerUrl() const override;
 };
 
-} // namespace binance
+} // namespace bybit
 } // namespace rqs
 
-#endif // BINANCE_MARKETAPI_H
+#endif // BYBIT_MARKETAPI_H

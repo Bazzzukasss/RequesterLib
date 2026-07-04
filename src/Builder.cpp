@@ -1,10 +1,13 @@
 #include "src/Builder.h"
 #include "src/Requester.h"
 #include "src/Client.h"
+#include "src/client/ClientImpl.h"
 #include "src/binance/MarketAPI.h"
 #include "src/binance/RequestCreator.h"
 #include "src/binance/RequestProcessor.h"
-#include "src/client/ClientImpl.h"
+#include "src/bybit/MarketAPI.h"
+#include "src/bybit/RequestCreator.h"
+#include "src/bybit/RequestProcessor.h"
 
 namespace rqs
 {
@@ -25,4 +28,19 @@ std::shared_ptr<IRequester> Builder::binanceRequester() const
     return requester;
 }
 
+std::shared_ptr<IRequester> Builder::bybitRequester() const
+{
+    std::unique_ptr<IClientImpl> clientImpl = std::make_unique<ClientImpl>();
+    std::unique_ptr<IClient> client = std::make_unique<Client>(std::move(clientImpl));
+
+    std::unique_ptr<IMarketAPI> marketAPI = std::make_unique<bybit::MarketAPI>();
+    std::unique_ptr<IRequestCreator> creator = std::make_unique<bybit::RequestCreator>(std::move(marketAPI));
+    std::unique_ptr<IRequestProcessor> processor = std::make_unique<bybit::RequestProcessor>();
+
+    auto requester = std::make_unique<Requester>(std::move(client),
+                                                 std::move(creator),
+                                                 std::move(processor));
+
+    return requester;
+}
 } // namespace rqs

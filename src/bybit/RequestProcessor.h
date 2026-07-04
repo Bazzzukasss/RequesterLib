@@ -1,12 +1,12 @@
-#ifndef BINANCE_REQUESTPROCESSOR_H
-#define BINANCE_REQUESTPROCESSOR_H
+#ifndef BYBIT_REQUESTPROCESSOR_H
+#define BYBIT_REQUESTPROCESSOR_H
 
 #include "src/interface/IRequestProcessor.h"
 
 namespace rqs
 {
 
-namespace binance
+namespace bybit
 {
 
 class RequestProcessor : public IRequestProcessor
@@ -15,7 +15,7 @@ public:
     std::map<CurrencyPair, double> processPriceRequest(const ReplyData& data) const override;
 };
 
-} // namespace binance
+} // namespace bybit
 } // namespace rqs
 
-#endif // BINANCE_REQUESTPROCESSOR_H
+#endif // BYBIT_REQUESTPROCESSOR_H

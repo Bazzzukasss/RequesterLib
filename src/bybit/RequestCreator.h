@@ -1,5 +1,5 @@
-#ifndef BINANCE_REQUESTCREATOR_H
-#define BINANCE_REQUESTCREATOR_H
+#ifndef BYBIT_REQUESTCREATOR_H
+#define BYBIT_REQUESTCREATOR_H
 
 #include "src/interface/IRequestCreator.h"
 #include <memory>
@@ -9,7 +9,7 @@ namespace rqs
 
 class IMarketAPI;
 
-namespace binance
+namespace bybit
 {
 
 class RequestCreator : public IRequestCreator
@@ -24,7 +24,7 @@ private:
     std::unique_ptr<IMarketAPI> m_marketAPI{nullptr};
 };
 
-} // namespace binance
+} // namespace bybit
 } // namespace rqs
 
-#endif // BINANCE_REQUESTCREATOR_H
+#endif // BYBIT_REQUESTCREATOR_H

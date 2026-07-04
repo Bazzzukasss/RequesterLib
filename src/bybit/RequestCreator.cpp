@@ -1,0 +1,34 @@
+#include "src/bybit/RequestCreator.h"
+#include "src/common/Utils.h"
+#include "src/interface/IMarketAPI.h"
+
+namespace rqs
+{
+namespace bybit
+{
+
+RequestCreator::RequestCreator(std::unique_ptr<IMarketAPI> marketAPI)
+    : IRequestCreator()
+    , m_marketAPI(std::move(marketAPI))
+{}
+
+Request RequestCreator::createPriceRequest(const std::vector<CurrencyPair>& currencyPairs, const RequestHandler& handler)
+{
+    std::string requestData = "?symbols=[";
+    int i{0};
+    for(const auto& currencyPair : currencyPairs)
+    {
+        requestData += "\"" + utils::toString(currencyPair.first) + utils::toString(currencyPair.second) + "\"";
+        i++;
+        if (i != currencyPairs.size())
+        {
+            requestData += ",";
+        }
+    }
+    requestData += "]";
+
+    return {RequestType::Get, m_marketAPI->epPrice(), requestData, handler};
+}
+
+} // namespace bybit
+} // namespace rqs
