@@ -13,6 +13,7 @@ namespace utils
 std::string toString(const CurrencyType& currency);
 CurrencyType toCurrencyType(const std::string& str);
 CurrencyPair toCurrencyPair(const std::string& str);
+std::map<std::string, std::string> toStringMap(const QVariantMap& varMap);
 
 } //namspace utils
 } //namspace rqs

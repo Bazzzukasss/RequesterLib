@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <QJsonDocument>
 
 namespace rqs
 {
@@ -28,7 +29,8 @@ enum class RequestType
 };
 
 using CurrencyPair = std::pair<CurrencyType, CurrencyType>;
-using ReplyData = std::vector<std::map<std::string, std::string>>;
+using ReplyData = QJsonDocument;
+using ProcessedReplyData = std::vector<std::map<std::string, std::string>>;;
 using RequestData = std::string;
 using EndPoint = std::string;
 using RequestHandler = std::function<void(ReplyData)>;

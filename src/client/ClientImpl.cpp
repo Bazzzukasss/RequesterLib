@@ -6,9 +6,6 @@
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
 #include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
-
 #include <map>
 
 namespace rqs
@@ -30,7 +27,7 @@ bool ClientImpl::connect(const std::string& serverUrl)
 bool ClientImpl::request(const RequestType& type, const EndPoint& endpoint,
                          const RequestData& data, const RequestHandler& handler)
 {
-    //qDebug()<<"Request:" << endpoint << data;
+    qDebug()<<"Request:" << endpoint << data;
     QNetworkRequestFactory factory(QString::fromStdString(m_serverUrl + endpoint));
     QNetworkRequest request = factory.createRequest(QString::fromStdString(data));
 
@@ -61,45 +58,11 @@ ReplyData ClientImpl::processReply(QRestReply& reply) const
         return {};
     }
 
-    ReplyData replyData;
-
     //Turn the data into a json document
-    auto doc = reply.readJson().value();
-
-    //Turn document into json array: Have to read the value from an std::optional object returned from doc.
-    if (doc.isArray())
-    {
-        QJsonArray array = doc.array();
-
-        for ( int i = 0; i < array.size(); i++)
-        {
-            QJsonObject object = array.at(i).toObject();
-            replyData.push_back(toStringMap(object.toVariantMap()));
-        }
-        //qDebug() << "Array response:" << replyData;
-    }
-    else if(doc.isObject())
-    {
-        replyData.push_back(toStringMap(doc.object().toVariantMap()));
-        //qDebug() << "Object responce:" << replyData;
-    }
-    else
-    {
-        qCritical() << "Unknown responce format!";
-    }
+    ReplyData replyData = reply.readJson().value();
+    //qDebug()<<replyData;
 
     return replyData;
 }
 
-std::map<std::string, std::string> ClientImpl::toStringMap(const QVariantMap& varMap) const
-{
-    std::map<std::string, std::string> data;
-
-    for(const auto& key : varMap.keys())
-    {
-        data.insert({key.toStdString(), varMap.value(key).toString().toStdString()});
-    }
-
-    return data;
-}
 } //namespace rqs

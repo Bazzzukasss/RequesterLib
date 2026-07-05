@@ -12,7 +12,7 @@ MarketAPI::MarketAPI()
 
 EndPoint MarketAPI::epPrice() const
 {
-    return "/api/v3/ticker/price";
+    return "/v5/market/tickers";
 }
 
 std::string MarketAPI::testServerUrl() const

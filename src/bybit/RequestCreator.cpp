@@ -14,18 +14,17 @@ RequestCreator::RequestCreator(std::unique_ptr<IMarketAPI> marketAPI)
 
 Request RequestCreator::createPriceRequest(const std::vector<CurrencyPair>& currencyPairs, const RequestHandler& handler)
 {
-    std::string requestData = "?symbols=[";
-    int i{0};
-    for(const auto& currencyPair : currencyPairs)
+    std::string requestData;
+    if (currencyPairs.size() == 1)
     {
-        requestData += "\"" + utils::toString(currencyPair.first) + utils::toString(currencyPair.second) + "\"";
-        i++;
-        if (i != currencyPairs.size())
-        {
-            requestData += ",";
-        }
+        auto currencyPair = currencyPairs.at(0);
+        auto currency = utils::toString(currencyPair.first) + utils::toString(currencyPair.second);
+        requestData = "?category=spot&symbol=" + currency;
     }
-    requestData += "]";
+    else
+    {
+        requestData = "?category=spot";
+    }
 
     return {RequestType::Get, m_marketAPI->epPrice(), requestData, handler};
 }

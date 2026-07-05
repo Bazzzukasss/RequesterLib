@@ -12,7 +12,10 @@ namespace bybit
 class RequestProcessor : public IRequestProcessor
 {
 public:
-    std::map<CurrencyPair, double> processPriceRequest(const ReplyData& data) const override;
+    std::map<CurrencyPair, double> processPriceRequest(const ReplyData& replyData) const override;
+
+private:
+    ProcessedReplyData processReplyData(const ReplyData& replyData) const;
 };
 
 } // namespace bybit
