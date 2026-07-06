@@ -10,6 +10,7 @@ namespace rqs
 namespace utils
 {
 
+std::string toCurrencySymbol(const CurrencyPair& currencyPair);
 std::string toString(const CurrencyType& currency);
 CurrencyType toCurrencyType(const std::string& str);
 CurrencyPair toCurrencyPair(const std::string& str);

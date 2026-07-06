@@ -9,11 +9,11 @@ namespace rqs
 namespace bybit
 {
 
-std::map<rqs::CurrencyPair, double> RequestProcessor::processPriceRequest(const ReplyData& replyData) const
+std::map<rqs::CurrencyPair, double> RequestProcessor::processPriceRequest(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& replyData) const
 {
     std::map<CurrencyPair, double> curencyPrices;
 
-    const auto& data = processReplyData(replyData);
+    const auto& data = processReplyData(currencyPairs, replyData);
 
     for(const auto& dataMap : data)
     {
@@ -27,9 +27,15 @@ std::map<rqs::CurrencyPair, double> RequestProcessor::processPriceRequest(const 
 }
 
 
-ProcessedReplyData RequestProcessor::processReplyData(const ReplyData& replyData) const
+ProcessedReplyData RequestProcessor::processReplyData(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& replyData) const
 {
     ProcessedReplyData processedReplyData;
+
+    std::set<std::string> requestedSymbols;
+    for(const auto& currencyPair : currencyPairs)
+    {
+        requestedSymbols.insert(utils::toCurrencySymbol(currencyPair));
+    }
 
     const auto& resultMap = replyData.object().toVariantMap();
     const auto& resultValue = resultMap.value("result").toJsonObject().toVariantMap();
@@ -39,8 +45,12 @@ ProcessedReplyData RequestProcessor::processReplyData(const ReplyData& replyData
     for (int i = 0; i < list.size(); i++)
     {
         const QJsonObject& object = list.at(i).toObject();
-        processedReplyData.push_back(utils::toStringMap(object.toVariantMap()));
-
+        const auto& dataMap = utils::toStringMap(object.toVariantMap());
+        const auto& symbol = dataMap.at("symbol");
+        if (requestedSymbols.count(symbol))
+        {
+            processedReplyData.push_back(dataMap);
+        }
     }
 
     return processedReplyData;

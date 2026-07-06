@@ -18,8 +18,8 @@ Request RequestCreator::createPriceRequest(const std::vector<CurrencyPair>& curr
     if (currencyPairs.size() == 1)
     {
         auto currencyPair = currencyPairs.at(0);
-        auto currency = utils::toString(currencyPair.first) + utils::toString(currencyPair.second);
-        requestData = "?category=spot&symbol=" + currency;
+        auto symbol = utils::toString(currencyPair.first) + utils::toString(currencyPair.second);
+        requestData = "?category=spot&symbol=" + symbol;
     }
     else
     {

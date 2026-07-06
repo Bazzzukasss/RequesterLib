@@ -17,7 +17,8 @@ enum class CurrencyType
     ETH,
     SOL,
     LINK,
-    BNB
+    BNB,
+    VANRY
 };
 
 enum class RequestType
@@ -29,6 +30,7 @@ enum class RequestType
 };
 
 using CurrencyPair = std::pair<CurrencyType, CurrencyType>;
+using CurrencySymbol = std::string;
 using ReplyData = QJsonDocument;
 using ProcessedReplyData = std::vector<std::map<std::string, std::string>>;;
 using RequestData = std::string;

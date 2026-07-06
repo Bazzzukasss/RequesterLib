@@ -27,9 +27,9 @@ bool Requester::requestPrices(const std::vector<CurrencyPair>& currencyPairs,
                               const std::function<void (const std::map<CurrencyPair, double>&)> handler)
 {
     auto request =
-        m_requestCreator->createPriceRequest(currencyPairs, [handler, this](const ReplyData& data) {
+        m_requestCreator->createPriceRequest(currencyPairs, [handler, currencyPairs, this](const ReplyData& data) {
 
-        const auto& curencyPrices = m_requestProcessor->processPriceRequest(data);
+        const auto& curencyPrices = m_requestProcessor->processPriceRequest(currencyPairs, data);
 
         handler(curencyPrices);
     });

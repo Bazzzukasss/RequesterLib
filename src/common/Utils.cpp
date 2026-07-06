@@ -14,7 +14,13 @@ const std::map<CurrencyType, std::string> CurrencyMap {
     {CurrencyType::SOL, "SOL"},
     {CurrencyType::LINK, "LINK"},
     {CurrencyType::BNB, "BNB"},
+    {CurrencyType::VANRY, "VANRY"},
 };
+
+std::string toCurrencySymbol(const CurrencyPair& currencyPair)
+{
+    return toString(currencyPair.first) + toString(currencyPair.second);
+}
 
 std::string toString(const CurrencyType& currency)
 {
