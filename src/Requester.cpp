@@ -23,13 +23,13 @@ bool Requester::setMarketAccount(const MarketAccount& account)
     return m_client->connect(account.serverUrl);
 }
 
-bool Requester::requestPrices(const std::vector<CurrencyPair>& currencyPairs,
-                              const std::function<void (const std::map<CurrencyPair, double>&)> handler)
+bool Requester::requestPrices(const std::vector<CurrencySymbol>& currencySymbols,
+                              const std::function<void (const std::map<CurrencySymbol, double>&)> handler)
 {
     auto request =
-        m_requestCreator->createPriceRequest(currencyPairs, [handler, currencyPairs, this](const ReplyData& data) {
+        m_requestCreator->createPriceRequest(currencySymbols, [handler, currencySymbols, this](const ReplyData& data) {
 
-        const auto& curencyPrices = m_requestProcessor->processPriceRequest(currencyPairs, data);
+        const auto& curencyPrices = m_requestProcessor->processPriceRequest(currencySymbols, data);
 
         handler(curencyPrices);
     });

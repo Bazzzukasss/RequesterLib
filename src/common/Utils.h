@@ -3,17 +3,15 @@
 
 #include "src/common/Common.h"
 
-#include <string>
-
 namespace rqs
 {
 namespace utils
 {
 
 std::string toCurrencySymbol(const CurrencyPair& currencyPair);
-std::string toString(const CurrencyType& currency);
-CurrencyType toCurrencyType(const std::string& str);
-CurrencyPair toCurrencyPair(const std::string& str);
+//std::string toString(const CurrencyType& currency);
+//CurrencyType toCurrencyType(const std::string& str);
+//CurrencyPair toCurrencyPair(const std::string& str);
 std::map<std::string, std::string> toStringMap(const QVariantMap& varMap);
 
 } //namspace utils

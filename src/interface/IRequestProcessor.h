@@ -11,7 +11,7 @@ class IRequestProcessor
 public:
     virtual ~IRequestProcessor() = default;
 
-    virtual std::map<CurrencyPair, double> processPriceRequest(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& replyData) const = 0;
+    virtual std::map<CurrencySymbol, double> processPriceRequest(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& replyData) const = 0;
 };
 
 } // namespace rqs

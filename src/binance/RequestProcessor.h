@@ -12,10 +12,10 @@ namespace binance
 class RequestProcessor : public IRequestProcessor
 {
 public:
-    std::map<CurrencyPair, double> processPriceRequest(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& data) const override;
+    std::map<CurrencySymbol, double> processPriceRequest(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& data) const override;
 
 private:
-    ProcessedReplyData processReplyData(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& replyData) const;
+    ProcessedReplyData processReplyData(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& replyData) const;
 };
 
 } // namespace binance

@@ -9,26 +9,26 @@ namespace rqs
 namespace binance
 {
 
-std::map<rqs::CurrencyPair, double> RequestProcessor::processPriceRequest(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& replyData) const
+std::map<rqs::CurrencySymbol, double> RequestProcessor::processPriceRequest(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& replyData) const
 {
-    std::map<CurrencyPair, double> curencyPrices;
+    std::map<CurrencySymbol, double> curencyPrices;
 
-    const auto& data = processReplyData(currencyPairs, replyData);
+    const auto& data = processReplyData(requestedSymbols, replyData);
 
     for(const auto& dataMap : data)
     {
         const auto& price = dataMap.at("price");
         const auto& symbol = dataMap.at("symbol");
-
-        curencyPrices.insert({utils::toCurrencyPair(symbol), std::stod(price)});
+//TODO
+        curencyPrices.insert({symbol, std::stod(price)});
     }
 
     return curencyPrices;
 }
 
-ProcessedReplyData RequestProcessor::processReplyData(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& replyData) const
+ProcessedReplyData RequestProcessor::processReplyData(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& replyData) const
 {
-    Q_UNUSED(currencyPairs)
+    Q_UNUSED(requestedSymbols)
     ProcessedReplyData processedReplyData;
     //Turn document into json array: Have to read the value from an std::optional object returned from doc.
     if (replyData.isArray())

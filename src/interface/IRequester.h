@@ -12,8 +12,8 @@ public:
     virtual ~IRequester() = default;
 
     virtual bool setMarketAccount(const MarketAccount& account) = 0;
-    virtual bool requestPrices(const std::vector<CurrencyPair>& currencyPairs,
-                               const std::function<void(const std::map<CurrencyPair, double>&)> handler) = 0;
+    virtual bool requestPrices(const std::vector<CurrencySymbol>& currencyPairs,
+                               const std::function<void(const std::map<CurrencySymbol, double>&)> handler) = 0;
 };
 
 } // namespace rqs

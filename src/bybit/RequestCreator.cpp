@@ -12,14 +12,13 @@ RequestCreator::RequestCreator(std::unique_ptr<IMarketAPI> marketAPI)
     , m_marketAPI(std::move(marketAPI))
 {}
 
-Request RequestCreator::createPriceRequest(const std::vector<CurrencyPair>& currencyPairs, const RequestHandler& handler)
+Request RequestCreator::createPriceRequest(const std::vector<CurrencySymbol>& currencySymbols, const RequestHandler& handler)
 {
     std::string requestData;
-    if (currencyPairs.size() == 1)
+    if (currencySymbols.size() == 1)
     {
-        auto currencyPair = currencyPairs.at(0);
-        auto symbol = utils::toString(currencyPair.first) + utils::toString(currencyPair.second);
-        requestData = "?category=spot&symbol=" + symbol;
+        auto currencySymbol = currencySymbols.at(0);
+        requestData = "?category=spot&symbol=" + currencySymbol;
     }
     else
     {

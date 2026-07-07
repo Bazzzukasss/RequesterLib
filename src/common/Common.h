@@ -9,18 +9,6 @@
 namespace rqs
 {
 
-enum class CurrencyType
-{
-    UNKNOWN,
-    USDT,
-    BTC,
-    ETH,
-    SOL,
-    LINK,
-    BNB,
-    VANRY
-};
-
 enum class RequestType
 {
     Get,
@@ -29,6 +17,7 @@ enum class RequestType
     Patch
 };
 
+using CurrencyType = std::string;
 using CurrencyPair = std::pair<CurrencyType, CurrencyType>;
 using CurrencySymbol = std::string;
 using ReplyData = QJsonDocument;
@@ -47,9 +36,9 @@ struct Request
 
 struct CurrencyTrinity
 {
-    CurrencyTrinity(const CurrencyType& c1, const CurrencyType& c2)
-        : c1_cb(c1, CurrencyType::USDT)
-        , c2_cb(c2, CurrencyType::USDT)
+    CurrencyTrinity(const CurrencyType& c1, const CurrencyType& c2, const CurrencyType& cb)
+        : c1_cb(c1, cb)
+        , c2_cb(c2, cb)
         , c2_c1(c2, c1)
     {}
 

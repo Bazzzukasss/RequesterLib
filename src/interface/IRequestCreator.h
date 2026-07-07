@@ -11,7 +11,7 @@ class IRequestCreator
 public:
     virtual ~IRequestCreator() = default;
 
-    virtual Request createPriceRequest(const std::vector<CurrencyPair>& currencyPairs,
+    virtual Request createPriceRequest(const std::vector<CurrencySymbol>& currencySymbols,
                                        const RequestHandler& handler) = 0;
 };
 

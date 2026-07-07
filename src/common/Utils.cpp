@@ -1,12 +1,13 @@
 #include "src/common/Utils.h"
 #include <QMap>
 #include <QVariant>
+#include <string>
 
 namespace rqs
 {
 namespace utils
 {
-
+/*
 const std::map<CurrencyType, std::string> CurrencyMap {
     {CurrencyType::USDT, "USDT"},
     {CurrencyType::BTC, "BTC"},
@@ -16,12 +17,12 @@ const std::map<CurrencyType, std::string> CurrencyMap {
     {CurrencyType::BNB, "BNB"},
     {CurrencyType::VANRY, "VANRY"},
 };
-
+*/
 std::string toCurrencySymbol(const CurrencyPair& currencyPair)
 {
-    return toString(currencyPair.first) + toString(currencyPair.second);
+    return currencyPair.first + currencyPair.second;
 }
-
+/*
 std::string toString(const CurrencyType& currency)
 {
     auto itr = CurrencyMap.find(currency);
@@ -65,7 +66,7 @@ CurrencyPair toCurrencyPair(const std::string& str)
 
     return {CurrencyType::UNKNOWN, CurrencyType::UNKNOWN};
 }
-
+*/
 std::map<std::string, std::string> toStringMap(const QVariantMap& varMap)
 {
     std::map<std::string, std::string> data;

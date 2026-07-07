@@ -17,7 +17,7 @@ class RequestCreator : public IRequestCreator
 public:
     RequestCreator(std::unique_ptr<IMarketAPI> marketAPI);
 
-    Request createPriceRequest(const std::vector<CurrencyPair>& currencyPairs,
+    Request createPriceRequest(const std::vector<CurrencySymbol>& currencySymbols,
                                const RequestHandler& handler) override;
 
 private:

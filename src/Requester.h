@@ -21,8 +21,8 @@ public:
               std::unique_ptr<IRequestProcessor> reqProcessor);
 
     bool setMarketAccount(const MarketAccount& account) override;
-    bool requestPrices(const std::vector<CurrencyPair>& currencyPairs,
-                       const std::function<void (const std::map<CurrencyPair, double>&)> handler) override;
+    bool requestPrices(const std::vector<CurrencySymbol>& currencySymbols,
+                       const std::function<void (const std::map<CurrencySymbol, double>&)> handler) override;
 
 private:
     std::unique_ptr<IClient> m_client{nullptr};

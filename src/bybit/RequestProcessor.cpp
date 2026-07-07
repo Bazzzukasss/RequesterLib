@@ -9,32 +9,35 @@ namespace rqs
 namespace bybit
 {
 
-std::map<rqs::CurrencyPair, double> RequestProcessor::processPriceRequest(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& replyData) const
+std::map<rqs::CurrencySymbol, double> RequestProcessor::processPriceRequest(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& replyData) const
 {
-    std::map<CurrencyPair, double> curencyPrices;
+    std::map<CurrencySymbol, double> curencyPrices;
 
-    const auto& data = processReplyData(currencyPairs, replyData);
+    const auto& data = processReplyData(requestedSymbols, replyData);
 
     for(const auto& dataMap : data)
     {
         auto price = dataMap.at("ask1Price");
         auto symbol = dataMap.at("symbol");
 
-        curencyPrices.insert({utils::toCurrencyPair(symbol), std::stod(price)});
+        if (price != "")
+        {
+            curencyPrices.insert({symbol, std::stod(price)});
+        }
     }
 
     return curencyPrices;
 }
 
 
-ProcessedReplyData RequestProcessor::processReplyData(const std::vector<CurrencyPair>& currencyPairs, const ReplyData& replyData) const
+ProcessedReplyData RequestProcessor::processReplyData(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& replyData) const
 {
     ProcessedReplyData processedReplyData;
 
-    std::set<std::string> requestedSymbols;
-    for(const auto& currencyPair : currencyPairs)
+    std::set<CurrencySymbol> requestedSymbolsSet;
+    for(const auto& requestedSymbol : requestedSymbols)
     {
-        requestedSymbols.insert(utils::toCurrencySymbol(currencyPair));
+        requestedSymbolsSet.insert(requestedSymbol);
     }
 
     const auto& resultMap = replyData.object().toVariantMap();
@@ -47,7 +50,7 @@ ProcessedReplyData RequestProcessor::processReplyData(const std::vector<Currency
         const QJsonObject& object = list.at(i).toObject();
         const auto& dataMap = utils::toStringMap(object.toVariantMap());
         const auto& symbol = dataMap.at("symbol");
-        if (requestedSymbols.count(symbol))
+        if (requestedSymbolsSet.count(symbol) || requestedSymbolsSet.empty())
         {
             processedReplyData.push_back(dataMap);
         }
