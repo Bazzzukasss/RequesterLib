@@ -19,7 +19,7 @@ std::map<rqs::CurrencySymbol, double> RequestProcessor::processPriceRequest(cons
     {
         const auto& price = dataMap.at("price");
         const auto& symbol = dataMap.at("symbol");
-//TODO
+
         curencyPrices.insert({symbol, std::stod(price)});
     }
 
