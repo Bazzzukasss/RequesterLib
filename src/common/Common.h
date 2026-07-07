@@ -17,9 +17,9 @@ enum class RequestType
     Patch
 };
 
-using CurrencyType = std::string;
-using CurrencyPair = std::pair<CurrencyType, CurrencyType>;
-using CurrencySymbol = std::string;
+using CoinType = std::string;
+using CoinPair = std::pair<CoinType, CoinType>;
+using CoinSymbol = std::string;
 using ReplyData = QJsonDocument;
 using ProcessedReplyData = std::vector<std::map<std::string, std::string>>;;
 using RequestData = std::string;
@@ -34,17 +34,17 @@ struct Request
     rqs::RequestHandler handler;
 };
 
-struct CurrencyTrinity
+struct CoinTrinity
 {
-    CurrencyTrinity(const CurrencyType& c1, const CurrencyType& c2, const CurrencyType& cb)
+    CoinTrinity(const CoinType& c1, const CoinType& c2, const CoinType& cb)
         : c1_cb(c1, cb)
         , c2_cb(c2, cb)
         , c2_c1(c2, c1)
     {}
 
-    CurrencyPair c1_cb;
-    CurrencyPair c2_cb;
-    CurrencyPair c2_c1;
+    CoinPair c1_cb;
+    CoinPair c2_cb;
+    CoinPair c2_c1;
 };
 
 struct MarketAccount

@@ -9,9 +9,9 @@ namespace rqs
 namespace binance
 {
 
-std::map<rqs::CurrencySymbol, double> RequestProcessor::processPriceRequest(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& replyData) const
+std::map<rqs::CoinSymbol, double> RequestProcessor::processPriceRequest(const std::vector<CoinSymbol>& requestedSymbols, const ReplyData& replyData) const
 {
-    std::map<CurrencySymbol, double> curencyPrices;
+    std::map<CoinSymbol, double> curencyPrices;
 
     const auto& data = processReplyData(requestedSymbols, replyData);
 
@@ -26,7 +26,7 @@ std::map<rqs::CurrencySymbol, double> RequestProcessor::processPriceRequest(cons
     return curencyPrices;
 }
 
-ProcessedReplyData RequestProcessor::processReplyData(const std::vector<CurrencySymbol>& requestedSymbols, const ReplyData& replyData) const
+ProcessedReplyData RequestProcessor::processReplyData(const std::vector<CoinSymbol>& requestedSymbols, const ReplyData& replyData) const
 {
     Q_UNUSED(requestedSymbols)
     ProcessedReplyData processedReplyData;

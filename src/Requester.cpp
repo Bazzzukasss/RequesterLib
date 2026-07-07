@@ -23,8 +23,8 @@ bool Requester::setMarketAccount(const MarketAccount& account)
     return m_client->connect(account.serverUrl);
 }
 
-bool Requester::requestPrices(const std::vector<CurrencySymbol>& currencySymbols,
-                              const std::function<void (const std::map<CurrencySymbol, double>&)> handler)
+bool Requester::requestPrices(const std::vector<CoinSymbol>& currencySymbols,
+                              const std::function<void (const std::map<CoinSymbol, double>&)> handler)
 {
     auto request =
         m_requestCreator->createPriceRequest(currencySymbols, [handler, currencySymbols, this](const ReplyData& data) {

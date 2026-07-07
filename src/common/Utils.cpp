@@ -8,7 +8,7 @@ namespace rqs
 namespace utils
 {
 
-std::string toCurrencySymbol(const CurrencyPair& currencyPair)
+std::string toCurrencySymbol(const CoinPair& currencyPair)
 {
     return currencyPair.first + currencyPair.second;
 }

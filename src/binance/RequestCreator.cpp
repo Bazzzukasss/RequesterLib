@@ -12,7 +12,7 @@ RequestCreator::RequestCreator(std::unique_ptr<IMarketAPI> marketAPI)
     , m_marketAPI(std::move(marketAPI))
 {}
 
-Request RequestCreator::createPriceRequest(const std::vector<CurrencySymbol>& currencySymbols, const RequestHandler& handler)
+Request RequestCreator::createPriceRequest(const std::vector<CoinSymbol>& currencySymbols, const RequestHandler& handler)
 {
     std::string requestData;
 
